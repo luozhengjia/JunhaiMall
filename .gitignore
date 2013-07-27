@@ -1,3 +1,5 @@
+/.settings
+
 # Package Files #
 *.jar
 *.war
@@ -7,4 +9,4 @@
 *.class
 .classpath
 .project
-/.settings
+
