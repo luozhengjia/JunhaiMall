@@ -32,6 +32,7 @@
 		<p>咨询电话：0711-5113338</p>
 		<p><a href="http://weibo.com/junhaisc" target="blank" style="color:black;height:36px;line-height:36px;">
 			<img src="images/weibo.gif" border="0">武汉壹骏海实业有限公司</a></p>
+		<p style="padding:10px 0 0 0"><img src="images/wxtm.jpg" border="0" ><p>
 	</div>
 	
 	<div class="ticket_r">

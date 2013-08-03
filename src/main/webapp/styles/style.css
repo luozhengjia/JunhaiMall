@@ -10,7 +10,7 @@ a { text-decoration:none; color:#ffffff;}
 .nav img { margin:16px 10px 0 6px;}
 .nav_l_e span{ display:block; float:right; padding:0 5px; height:65xp; margin-top:-6px; line-height:65px;} 
 .nav_l_e span a:hover { text-decoration:underline;}
-.ticket_l { width:190px; float:left; padding:135px 0 0 45px;}
+.ticket_l { width:190px; float:left; padding:85px 0 0 45px;}
 .ticket_l p strong { font-size:16px;}
 .ticket_l p { height:20px; margin:10px 0 0 0; padding:0;} 
 .ticket_l_img { width:135px;}
