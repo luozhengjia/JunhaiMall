@@ -172,6 +172,8 @@
 	</div>
 	
 	<a href="javascript:void(0);" onclick="createOrder();"><div class="times_button"><img src="images/buttonbg2.gif"></div></a>
+	<div style="text-align:center;color:red;padding:6px;">本系统一经提交，无法修改，请仔细核对信息。</div>
+
 	</#if>
 <script>
 	var nreg_input=$("#consignee,#mobilePhone,#detailAddress");

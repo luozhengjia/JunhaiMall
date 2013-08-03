@@ -19,7 +19,7 @@
 	</div>
 </div>
 <div class="footer2">
-	<p>Copyright&nbsp;&copy;&nbsp;2011 - 2013 Ejunhai Inc. 武汉壹骏海实业有限公司 版权所有 | 买水产 找骏海 | 京ICP证080194号 | 合作邮箱：<a href="mailto:ejunhai@ejunhai.com" style="color: #000000;">ejunhai@ejunhai.com</a></p>
+	<p>Copyright&nbsp;&copy;&nbsp;2011 - 2013 Ejunhai Inc. 武汉壹骏海实业有限公司 版权所有 | 买水产 找骏海 | 鄂ICP备12011799号-1 | 合作邮箱：<a href="mailto:ejunhai@ejunhai.com" style="color: #000000;">ejunhai@ejunhai.com</a></p>
 </div>
 <script>
 try{DD_belatedPNG.fix('.pngfix');}catch(e){}
