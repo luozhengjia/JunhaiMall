@@ -7,26 +7,30 @@
 <style type="text/css" media=print>
 .noprint{display:none}
 .PageNext{PAGE-BREAK-AFTER:always}
+
 </style>
 <style>
 .drag{border:0px solid #ff8c40;background:#fff5f6;padding:5px;color:blue;height:16px; line-height:16px;
 	font-size:16px;display:inline-block;position:absolute;left:0px;top:0px;padding-right:15px;font-weight:600;}
 </style>
 <title></title>
+<OBJECT ID="jatoolsPrinter" CLASSID="CLSID:B43D3361-D075-4BE2-87FE-057188254255" codebase="jatoolsPrinter.cab#version=5,7,0,0"></OBJECT>
 <script language="javascript">
 	function printPage(obj) {
-		try{
-			var body = window.document.body.innerHTML;
-			var printArea = window.document.getElementById(obj).innerHTML;
-			window.document.body.innerHTML = printArea;
-			window.print();
-			//Print();
-			window.document.body.innerHTML = body;
-			<#if orderMain??>$.get("/system/order/printMainExpress.sc?orderMainIds=${orderMain.id!''}");</#if>
-			<#if orderRepl??>$.get("/system/order/printReplExpress.sc?orderReplIds=${orderRepl.id!''}");</#if>
-		}catch(e){}
+			myDoc = {
+		   		documents:document,
+	       	copyrights:'杰创软件拥有版权  www.jatools.com',
+	       	onState:function(job){
+	       			if(job.status==128){
+	       					<#if orderMain??>$.get("/system/order/printMainExpress.sc?orderMainIds=${orderMain.id!''}");</#if>
+					 				<#if orderRepl??>$.get("/system/order/printReplExpress.sc?orderReplIds=${orderRepl.id!''}");</#if> 
+	       			}
+		      }
+	    }; 
+ 
+	    jatoolsPrinter.printPreview(myDoc);
 	}
-	</script>
+</script>
 </head>
 
 <body>
@@ -54,48 +58,52 @@
 				</li>
 			</ul>
 		</div>
+		
  		<div class="modify"> 
-            <table class="com_modi_table">
+        <table class="com_modi_table">
 				<tbody>
 					<tr>
 						<td>
-							<div id="Box" style="position:relative;border:1px solid #ccc;width:840px;height:550px;background-repeat:no-repeat;background-image:url(${BasePath}/images/express/dly_bg_5.jpg)">
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 48px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryCustomerCode!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 75px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryCompany!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 75px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="1">${deliverySender!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryProCityArea!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 133px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryDetailAddress!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 160px; CURSOR: move; LEFT: 140px" class="drag" sizcache="7" sizset="1">${deliveryMobilePhone!''}</SPAN>
+							<div id="page1" style="position:relative;width:231mm;height:152mm;">
+								<SPAN style="POSITION: absolute; TOP: 78px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryCustomerCode!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 105px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryCompany!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 105px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="1">${deliverySender!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 135px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryProCityArea!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 163px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryDetailAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 190px; CURSOR: move; LEFT: 140px" class="drag" sizcache="7" sizset="1">${deliveryMobilePhone!''}</SPAN>
 								
 								<#if orderMain??>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 205px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderMain.orderMainNo!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 233px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="0">${orderMain.consignee!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 260px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderMain.provinceCityArea!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 285px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderMain.detailAddress!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 315px; CURSOR: move; LEFT: 135px" class="drag" sizcache="7" sizset="1">${orderMain.mobilePhone!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 395px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderMain.deliveryContent!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 235px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderMain.orderMainNo!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 263px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="0">${orderMain.consignee!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 290px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderMain.provinceCityArea!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 315px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderMain.detailAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 345px; CURSOR: move; LEFT: 135px" class="drag" sizcache="7" sizset="1">${orderMain.mobilePhone!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 415px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryContent!''}</SPAN>
 								</#if>
 								
 								<#if orderRepl??>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 205px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderRepl.orderReplNo!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 233px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="0">${orderRepl.consignee!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 260px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderRepl.provinceCityArea!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 285px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderRepl.detailAddress!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 315px; CURSOR: move; LEFT: 135px" class="drag" sizcache="7" sizset="1">${orderRepl.mobilePhone!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 395px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderRepl.deliveryContent!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 235px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderRepl.orderReplNo!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 263px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="0">${orderRepl.consignee!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 290px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderRepl.provinceCityArea!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 315px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderRepl.detailAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 345px; CURSOR: move; LEFT: 135px" class="drag" sizcache="7" sizset="1">${orderRepl.mobilePhone!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 415px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryContent!''}</SPAN>
 								</#if>
 								
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 5px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${deliveryOrignAddress!''}</SPAN>
-								<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 235px; CURSOR: move; LEFT: 640px" class="drag" sizcache="7" sizset="1">${deliverySenderSign!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 35px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${deliveryOrignAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 110px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${monthlyPayment!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 265px; CURSOR: move; LEFT: 640px" class="drag" sizcache="7" sizset="1">${deliverySenderSign!''}</SPAN>
 							</div>
-		            	</td>
+		        </td>
 					</tr>
 					<tr>
 						<td><input type="button" value="打印" onclick="printPage('Box')" class="btn-save"/><input type="button" class="btn-back"
 							<#if orderMain??>onclick="javascript:gotolink('${BasePath}/system/order/orderMainList.sc?state=${orderMain.state!''}')"</#if>
 							<#if orderRepl??>onclick="javascript:gotolink('${BasePath}/system/order/orderReplList.sc?state=${orderRepl.state!''}')"</#if>
 							value="返回"/></td>
+							
 					</tr>
+					<tr><td><span style="color:red;padding:10px 2px 2px 15px;">打印功能请移步至IE6+浏览器|360浏览器|腾讯浏览器操作</span></td></tr>
 				</tbody>
 			</table>
     	</div>

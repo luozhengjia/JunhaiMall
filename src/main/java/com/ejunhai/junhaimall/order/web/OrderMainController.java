@@ -168,6 +168,9 @@ public class OrderMainController extends BaseController {
 		modelMap.put("deliveryCustomerCode", config.getConfigValue());
 		config = configService.getConfigByKey(OrderConstant.EXPRESS_DELIVERY_ORIGN_ADDRESS);
 		modelMap.put("deliveryOrignAddress", config.getConfigValue());
+		
+		config = configService.getConfigByKey(OrderConstant.EXPRESS_DELIVERY_MONTHLY_PAYMENT);
+        modelMap.put("monthlyPayment", config.getConfigValue());
 		return "manager/order/printExpressTemplate";
 	}
 
@@ -211,6 +214,9 @@ public class OrderMainController extends BaseController {
 		modelMap.put("deliveryCustomerCode", config.getConfigValue());
 		config = configService.getConfigByKey(OrderConstant.EXPRESS_DELIVERY_ORIGN_ADDRESS);
 		modelMap.put("deliveryOrignAddress", config.getConfigValue());
+		
+		config = configService.getConfigByKey(OrderConstant.EXPRESS_DELIVERY_MONTHLY_PAYMENT);
+        modelMap.put("monthlyPayment", config.getConfigValue());
 		return "manager/order/batchPrintExpressTemplate";
 	}
 

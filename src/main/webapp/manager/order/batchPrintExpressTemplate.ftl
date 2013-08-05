@@ -13,26 +13,28 @@
 	font-size:16px;display:inline-block;position:absolute;left:0px;top:0px;padding-right:15px;font-weight:600;}
 </style>
 <title></title>
+
+<OBJECT ID="jatoolsPrinter" CLASSID="CLSID:B43D3361-D075-4BE2-87FE-057188254255" codebase="jatoolsPrinter.cab#version=5,7,0,0"></OBJECT>
 <script language="javascript">
 	function printPage(obj) {
-		try{
-			var body = window.document.body.innerHTML;
-			
-			//循环打印快递单
-			$("div[name='printBox']").each(function (i){
-				i++;
-				alert("准备打印第"+i+"张发货单");
-				window.document.body.innerHTML = this.innerHTML;
-				window.print();
-		    });
-		    
-		    //异步更新打印状态
-			<#if orderMainIds??>$.get("/system/order/printMainExpress.sc?orderMainIds=${orderMainIds}");</#if>
-			<#if orderReplIds??>$.get("/system/order/printReplExpress.sc?orderReplIds=${orderReplIds}");</#if>
-			window.document.body.innerHTML = body;
-		}catch(e){}
+			$('#printPageBtn').attr('disabled','disabled');   
+			$("div[name='printBox']").css("display",'');
+			myDoc = {
+		   		documents:document,
+	       	copyrights:'杰创软件拥有版权  www.jatools.com',
+	       	onState:function(job){
+	       			if(job.status==128){
+	       					<#if orderMainIds??>$.get("/system/order/printMainExpress.sc?orderMainIds=${orderMainIds}");</#if>
+									<#if orderReplIds??>$.get("/system/order/printReplExpress.sc?orderReplIds=${orderReplIds}");</#if>
+									$('#printPageBtn').css("display", "none") 
+	       			}
+		      }
+	    }; 
+
+	    jatoolsPrinter.printPreview(myDoc,false);
+	    $("div[name='printBox']").attr("display", 'none');
 	}
-	</script>
+</script>
 </head>
 
 <body>
@@ -65,35 +67,38 @@
             <#list orderList as item >
 				<div style="float:left;width:265px;height:200px;">
 					<p style="height:32px;line-height:32px;font-size:14px;font-weight:600;">&nbsp;&nbsp;缩略图：<#if orderMainIds??>${item.orderMainNo!''}</#if><#if orderReplIds??>${item.orderReplNo!''}</#if>
-	        		<div id="Thumbnail_${item.id!''}" style="position:relative;border:1px solid #ccc;width:250px;height:160px;background-repeat:no-repeat;background-image:url(${BasePath}/images/express/express_thumbnail.jpg)"></div>
-	        		<div id="${item.id!''}" name="printBox" style="position:relative;display:none;border:1px solid #ccc;width:840px;height:550px;">
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 48px; LEFT: 70px" class="drag" >${deliveryCustomerCode!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 75px;  LEFT: 70px" class="drag" >${deliveryCompany!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 75px;  LEFT: 270px" class="drag" >${deliverySender!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px;  LEFT: 70px" class="drag" >${deliveryProCityArea!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 133px;  LEFT: 70px" class="drag" >${deliveryDetailAddress!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 160px;  LEFT: 140px" class="drag" >${deliveryMobilePhone!''}</SPAN>
+	        		<div id="Thumbnail_${item.id!''}" style="position:relative;width:250px;height:160px;background-repeat:no-repeat;background-image:url(${BasePath}/images/express/express_thumbnail.jpg)"></div>
+	        		<div id="page${item_index+1}" name="printBox" style="position:relative;display:none;width:840px;height:550px;">
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 78px; LEFT: 70px" class="drag" >${deliveryCustomerCode!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px;  LEFT: 70px" class="drag" >${deliveryCompany!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px;  LEFT: 270px" class="drag" >${deliverySender!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 135px;  LEFT: 70px" class="drag" >${deliveryProCityArea!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 163px;  LEFT: 70px" class="drag" >${deliveryDetailAddress!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 190px;  LEFT: 140px" class="drag" >${deliveryMobilePhone!''}</SPAN>
 						
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 205px;  LEFT: 70px" class="drag" >
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 235px;  LEFT: 70px" class="drag" >
 							<#if orderMainIds??>${item.orderMainNo!''}</#if><#if orderReplIds??>${item.orderReplNo!''}</#if>
 						</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 233px;  LEFT: 270px" class="drag" >${item.consignee!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 260px;  LEFT: 70px" class="drag" >${item.provinceCityArea!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 285px;  LEFT: 70px" class="drag" >${item.detailAddress!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 315px;  LEFT: 135px" class="drag" >${item.mobilePhone!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 263px;  LEFT: 270px" class="drag" >${item.consignee!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 290px;  LEFT: 70px" class="drag" >${item.provinceCityArea!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 315px;  LEFT: 70px" class="drag" >${item.detailAddress!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 345px;  LEFT: 135px" class="drag" >${item.mobilePhone!''}</SPAN>
 						
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 395px;  LEFT: 70px" class="drag" >${item.deliveryContent!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 5px;  LEFT: 555px" class="drag" >${deliveryOrignAddress!''}</SPAN>
-						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 235px;  LEFT: 640px" class="drag" >${deliverySenderSign!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 415px;  LEFT: 70px" class="drag" >${deliveryContent!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 35px;  LEFT: 555px" class="drag" >${deliveryOrignAddress!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 110px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${monthlyPayment!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 265px;  LEFT: 640px" class="drag" >${deliverySenderSign!''}</SPAN>
 					</div>
 				</div>
 			</#list>
             </#if>
-			<div style="clear:both;"><input type="button" value="打印" onclick="printPage('Box')" class="btn-save"/><input type="button" class="btn-back" 
+			<div style="clear:both;"><input id="printPageBtn" type="button" value="打印" onclick="printPage('Box')" class="btn-save"/><input type="button" class="btn-back" 
 				<#if orderMainIds??>onclick="javascript:gotolink('${BasePath}/system/order/orderMainList.sc?state=${state}')"</#if>
 				<#if orderReplIds??>onclick="javascript:gotolink('${BasePath}/system/order/orderReplList.sc?state=${state}')"</#if>
 			 	value="返回"/></div>
+			 	<p style="color:red;padding:10px 2px 2px 15px;">打印功能请移步至IE6+浏览器|360浏览器|腾讯浏览器操作</p>
     	</div>
+    	
   	</div>
 </div>
 </body>
