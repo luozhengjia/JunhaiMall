@@ -3,8 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>骏海水产预定系统</title>
-		<#include "/mall/common/script.ftl" >
-		<script type="text/javascript" src="/js/MD5.js?${JS_VERSION}"></script>
+		<link rel="stylesheet" href="/styles/style.css?${JS_VERSION}" type="text/css" />
 	</head>
 <body>
 	<#include "/mall/common/header.ftl" >
@@ -81,6 +80,7 @@
 	</div>
 		<div style=" clear:both;"></div>
 	</div>
+	<#include "/mall/common/script.ftl" >
 	<script>
 		var nreg_input=$("#couponNumber,#couponPassword,#validateCode");
 	    nreg_input.focusin(function(){ 
@@ -90,5 +90,6 @@
 	    });
 	</script>
 	<#include "/mall/common/footer.ftl" >
+	<script type="text/javascript" src="/js/MD5.js?${JS_VERSION}"></script>
 </body>
 </html>

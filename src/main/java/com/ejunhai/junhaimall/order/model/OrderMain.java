@@ -21,6 +21,11 @@ public class OrderMain implements Serializable {
 	/*** 
      */
 	private String orderMainNo;
+	
+	/**
+     * 冗余优惠券码
+     */
+    private String couponNumber;
 
 	/**
      * 
@@ -127,8 +132,16 @@ public class OrderMain implements Serializable {
 	public void setOrderMainNo(String orderMainNo) {
 		this.orderMainNo = orderMainNo;
 	}
+	
+	public String getCouponNumber() {
+        return couponNumber;
+    }
 
-	public Date getCreateTime() {
+    public void setCouponNumber(String couponNumber) {
+        this.couponNumber = couponNumber;
+    }
+
+    public Date getCreateTime() {
 		return createTime;
 	}
 

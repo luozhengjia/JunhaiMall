@@ -4,6 +4,7 @@
     <resultMap id="OrderMainMap" type="com.ejunhai.junhaimall.order.model.OrderMain" >
         <result column="id" property="id" jdbcType="VARCHAR" />
         <result column="order_main_no" property="orderMainNo" jdbcType="VARCHAR" />
+        <result column="coupon_number" property="couponNumber" jdbcType="VARCHAR" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="state" property="state" jdbcType="SMALLINT" />
         <result column="pay_amount" property="payAmount" jdbcType="DOUBLE" />
@@ -25,6 +26,7 @@
      <select id="queryOrderMainList" resultMap="OrderMainMap" parameterType="com.ejunhai.junhaimall.order.model.OrderMain">
   		SELECT *from tbl_order_main where 1=1
   		<if test="orderMainNo != null and orderMainNo !=''">and order_main_no like CONCAT('%',#{orderMainNo},'%') </if>
+  		<if test="couponNumber != null and couponNumber !=''">and coupon_number like CONCAT('%',#{couponNumber},'%') </if>
   		<if test="consignee != null and consignee !=''">and consignee=#{consignee} </if>
   		<if test="orderDate != null and orderDate !=''">and order_date=#{orderDate} </if>
   		<if test="state != null">and state=#{state} </if>
@@ -37,6 +39,7 @@
   	<select id="queryOrderMainCount" parameterType="com.ejunhai.junhaimall.order.model.OrderMain" resultType="int">
   		SELECT count(1) FROM tbl_order_main where 1=1
   		<if test="orderMainNo != null and orderMainNo !=''">and order_main_no like CONCAT('%',#{orderMainNo},'%') </if>
+  		<if test="couponNumber != null and couponNumber !=''">and coupon_number like CONCAT('%',#{couponNumber},'%') </if>
   		<if test="consignee != null and consignee !=''">and consignee=#{consignee} </if>
   		<if test="orderDate != null  and orderDate !=''">and order_date=#{orderDate} </if>
   		<if test="state != null">and state=#{state} </if>
@@ -50,13 +53,13 @@
   	</select>
   	
   	<select id="getOrdermainByOrderMainNo" parameterType="String" resultMap="OrderMainMap">
-  		SELECT * FROM tbl_order_main where order_main_no=#{orderMainNo}
+  		SELECT * FROM tbl_order_main left join where order_main_no=#{orderMainNo}
   	</select>
   	
   	<insert id="insertOrderMain" parameterType="com.ejunhai.junhaimall.order.model.OrderMain">
-	  	insert into tbl_order_main (id, order_main_no, create_time, state,pay_amount, order_date,consignee, 
+	  	insert into tbl_order_main (id, order_main_no,coupon_number, create_time, state,pay_amount, order_date,consignee, 
 	  		mobile_phone,province_code,city_code,area_code, province_city_area, detail_address,logistics_company,express_order_no,is_send_sms )
-	    values (#{id,jdbcType=VARCHAR}, #{orderMainNo,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},
+	    values (#{id,jdbcType=VARCHAR}, #{orderMainNo,jdbcType=VARCHAR},#{couponNumber,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},
 	     	#{state,jdbcType=SMALLINT}, #{payAmount,jdbcType=DOUBLE},#{orderDate,jdbcType=VARCHAR},
 	     	#{consignee,jdbcType=VARCHAR},#{mobilePhone,jdbcType=VARCHAR},#{provinceCode,jdbcType=VARCHAR},
 	     	#{cityCode,jdbcType=VARCHAR},#{areaCode,jdbcType=VARCHAR},#{provinceCityArea,jdbcType=VARCHAR},

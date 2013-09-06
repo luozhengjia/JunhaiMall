@@ -43,6 +43,8 @@
 	           				value="<#if orderMain.endOrderTime??>${orderMain.endOrderTime?string('yyyy-MM-dd HH:mm')}</#if>" />
         			</div>
         			<div style="height:32px;line-height:32px;">
+        				<label for="name">优惠券码：</label>
+	           			<input size="18"  type="text" id="couponNumber" name="couponNumber" value="${orderMain.couponNumber!''}" class="inputtxt"/>
         				<label for="name">预约日期：</label>
 	           			<input size="18"  type="text" id="orderDate" name="orderDate" value="${orderMain.orderDate!''}" class="inputtxt"/>
 	           			<label>打印状态：</label>
@@ -61,7 +63,8 @@
 				<thead>
                     <tr>
                     <th width="3%" style="text-align:center"><input type="checkbox" name="allBox" id="allBox"></th>
-                    <th width="10%" style="text-align:center">订单号</th>
+                    <th width="8%" style="text-align:center">订单号</th>
+                    <th width="8%" style="text-align:center">优惠券</th>
                     <th style="text-align:center">下单日期</th>
                     <th style="text-align:center">订单金额</th>
                     <th style="text-align:center">预约日期</th>
@@ -79,6 +82,7 @@
                 		<tr>
                 			<td><input type="checkbox" name="idBox" id="${item.id!''}"></td>
                 			<td style="text-align:center">${item.orderMainNo!''}</td>
+                			<td style="text-align:center">${item.couponNumber!''}</td>
                 			<td style="text-align:center">${item.createTime?string('yyyy-MM-dd HH:mm')}</td>
                 			<td style="text-align:center">${item.payAmount?c}</td>
                 			<td style="text-align:center">${item.orderDate!''}</td>

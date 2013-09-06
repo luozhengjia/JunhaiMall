@@ -79,6 +79,7 @@ public class OrderMainServiceImpl extends BaseSpringService implements IOrderMai
 		orderMain.setOrderMainNo(orderMainNo);
 		CouponScheme couponScheme = couponSchemeService.readCouponScheme(coupon.getCouponSchemeId());
 		orderMain.setPayAmount(Double.valueOf(couponScheme.getParValue()));
+		orderMain.setCouponNumber(coupon.getCouponNumber());
 		orderMain.setCreateTime(new Date());
 		orderMain.setState(OrderConstant.ORDER_STATE_WAIT_DELIVER);
 		orderMain.setIsSendSms(OrderConstant.ORDER_SEND_SMS_NO);

@@ -1,12 +1,12 @@
-/.settings
+.settings/eclipse/
 
-# Package Files #
-*.jar
-*.war
-*.ear
-/target
+logs/
 
-*.class
+tmp/
+
+lib/
+
 .classpath
 .project
+target/
 
