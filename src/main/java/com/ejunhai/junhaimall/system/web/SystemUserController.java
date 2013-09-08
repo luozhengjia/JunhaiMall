@@ -27,6 +27,11 @@ public class SystemUserController {
     public ModelAndView toLogin(HttpServletRequest request) {
         return new ModelAndView(new RedirectView("manager/login.html"));
     }
+    
+    @RequestMapping("toForbidden")
+    public ModelAndView toForbidden(HttpServletRequest request) {
+        return new ModelAndView(new RedirectView("manager/403.html"));
+    }
 
     @RequestMapping("loginSystem")
     public ModelAndView login(String username, String password, String validateCode, HttpServletRequest request) {

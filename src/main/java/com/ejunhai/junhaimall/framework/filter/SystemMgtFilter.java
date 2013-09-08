@@ -11,6 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.ejunhai.junhaimall.system.model.SystemMgtUser;
 
 public class SystemMgtFilter implements Filter {
@@ -34,16 +37,16 @@ public class SystemMgtFilter implements Filter {
             SystemMgtUser systemMgtUser = SystemSessionManager.get((HttpServletRequest) arg0);
             if (systemMgtUser == null) {
                 ((HttpServletResponse) arg1).sendRedirect("/toLoginSystem.sc");
-            }
-
-            // 限制普通用户访问优惠券和系统配置
-            if (!"superadmin".equals(systemMgtUser.getRole())) {
+            } else if (!"superadmin".equals(systemMgtUser.getRole())) {
+                // 限制普通用户访问优惠券和系统配置
                 if (uri.contains("system/coupon") | uri.contains("system/couponScheme") | uri.contains("system/config")) {
-                    ((HttpServletResponse) arg1).sendRedirect("manager/403.html");
+                    ((HttpServletResponse) arg1).sendRedirect("/toForbidden.sc");
+                } else {
+                    arg2.doFilter(arg0, arg1);
                 }
+            } else {
+                arg2.doFilter(arg0, arg1);
             }
-
-            arg2.doFilter(arg0, arg1);
         }
     }
 
