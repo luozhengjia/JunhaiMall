@@ -53,7 +53,7 @@
   	</select>
   	
   	<select id="getOrdermainByOrderMainNo" parameterType="String" resultMap="OrderMainMap">
-  		SELECT * FROM tbl_order_main left join where order_main_no=#{orderMainNo}
+  		SELECT * FROM tbl_order_main where order_main_no=#{orderMainNo}
   	</select>
   	
   	<insert id="insertOrderMain" parameterType="com.ejunhai.junhaimall.order.model.OrderMain">
