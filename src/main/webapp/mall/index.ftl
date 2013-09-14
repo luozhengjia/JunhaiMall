@@ -17,7 +17,9 @@
 			<div style=" clear:both;"></div>
 		</div>
 	</div>
-	
+	<div style="color:red;width:990px; margin:auto;padding-left:200px;">
+		骏海水产温馨提示：由于今年天气原因，大闸蟹成熟较晚，建议“吃货客户”在10月国庆后提货。急需客户，建议9月22日开始预约。
+	</div>
 	<div class="title">
 		<div class="ticket_l">
 			<p><strong>预约不了怎么办?</strong></p>
