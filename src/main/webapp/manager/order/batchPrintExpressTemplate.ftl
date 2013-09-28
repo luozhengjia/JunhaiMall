@@ -69,6 +69,7 @@
 				<div style="float:left;width:265px;height:200px;">
 					<p style="height:32px;line-height:32px;font-size:14px;font-weight:600;">&nbsp;&nbsp;缩略图：<#if orderMainIds??>${item.orderMainNo!''}</#if><#if orderReplIds??>${item.orderReplNo!''}</#if>
 	        		<div id="Thumbnail_${item.id!''}" style="position:relative;width:250px;height:160px;background-repeat:no-repeat;background-image:url(${BasePath}/images/express/express_thumbnail.jpg)"></div>
+	        		<#if item.logisticsCompanyCode!'' == "zhongtong">
 	        		<div id="page${item_index+1}" name="printBox" style="position:relative;display:none;width:840px;height:550px;">
 						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 78px; LEFT: 70px" class="drag" >${deliveryCustomerCode!''}</SPAN>
 						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px;  LEFT: 70px" class="drag" >${deliveryCompany!''}</SPAN>
@@ -90,6 +91,29 @@
 						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 110px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${monthlyPayment!''}</SPAN>
 						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 265px;  LEFT: 640px" class="drag" >${deliverySenderSign!''}</SPAN>
 					</div>
+	        		<#else>
+	        		<div id="page${item_index+1}" name="printBox" style="position:relative;display:none;width:840px;height:550px;">
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 78px; LEFT: 70px" class="drag" >${deliveryCustomerCode!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px;  LEFT: 70px" class="drag" >${deliveryCompany!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 105px;  LEFT: 270px" class="drag" >${deliverySender!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 135px;  LEFT: 70px" class="drag" >${deliveryProCityArea!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 163px;  LEFT: 70px" class="drag" >${deliveryDetailAddress!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 190px;  LEFT: 140px" class="drag" >${deliveryMobilePhone!''}</SPAN>
+						
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 235px;  LEFT: 70px" class="drag" >
+							<#if orderMainIds??>${item.orderMainNo!''}</#if><#if orderReplIds??>${item.orderReplNo!''}</#if>
+						</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 263px;  LEFT: 270px" class="drag" >${item.consignee!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 290px;  LEFT: 70px" class="drag" >${item.provinceCityArea!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 315px;  LEFT: 70px" class="drag" >${item.detailAddress!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 345px;  LEFT: 135px" class="drag" >${item.mobilePhone!''}</SPAN>
+						
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 415px;  LEFT: 70px" class="drag" >${deliveryContent!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 35px;  LEFT: 555px" class="drag" >${deliveryOrignAddress!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 110px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${monthlyPayment!''}</SPAN>
+						<SPAN style="Z-INDEX: 10000; POSITION: absolute; TOP: 265px;  LEFT: 640px" class="drag" >${deliverySenderSign!''}</SPAN>
+					</div>
+	        		</#if>
 				</div>
 			</#list>
             </#if>

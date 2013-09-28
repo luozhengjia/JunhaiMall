@@ -65,6 +65,10 @@
 				<tbody>
 					<tr>
 						<td>
+							<#if orderMain??><#assign logisticsCompanyCode="${orderMain.logisticsCompanyCode!''}"></#if>
+							<#if orderRepl??><#assign logisticsCompanyCode="${orderRepl.logisticsCompanyCode!''}"></#if>
+							
+							<#if logisticsCompanyCode == "zhongtong">
 							<div id="page1" style="position:relative;width:231mm;height:152mm;">
 								<SPAN style="POSITION: absolute; TOP: 78px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryCustomerCode!''}</SPAN>
 								<SPAN style="POSITION: absolute; TOP: 105px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryCompany!''}</SPAN>
@@ -95,7 +99,39 @@
 								<SPAN style="POSITION: absolute; TOP: 110px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${monthlyPayment!''}</SPAN>
 								<SPAN style="POSITION: absolute; TOP: 265px; CURSOR: move; LEFT: 640px" class="drag" sizcache="7" sizset="1">${deliverySenderSign!''}</SPAN>
 							</div>
-		        </td>
+							<#else>
+							<div id="page1" style="position:relative;width:231mm;height:152mm;">
+								<SPAN style="POSITION: absolute; TOP: 78px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryCustomerCode!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 105px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryCompany!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 105px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="1">${deliverySender!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 135px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryProCityArea!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 163px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${deliveryDetailAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 190px; CURSOR: move; LEFT: 140px" class="drag" sizcache="7" sizset="1">${deliveryMobilePhone!''}</SPAN>
+								
+								<#if orderMain??>
+								<SPAN style="POSITION: absolute; TOP: 235px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderMain.orderMainNo!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 263px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="0">${orderMain.consignee!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 290px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderMain.provinceCityArea!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 315px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderMain.detailAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 345px; CURSOR: move; LEFT: 135px" class="drag" sizcache="7" sizset="1">${orderMain.mobilePhone!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 415px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryContent!''}</SPAN>
+								</#if>
+								
+								<#if orderRepl??>
+								<SPAN style="POSITION: absolute; TOP: 235px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderRepl.orderReplNo!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 263px; CURSOR: move; LEFT: 270px" class="drag" sizcache="7" sizset="0">${orderRepl.consignee!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 290px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${orderRepl.provinceCityArea!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 315px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="0">${orderRepl.detailAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 345px; CURSOR: move; LEFT: 135px" class="drag" sizcache="7" sizset="1">${orderRepl.mobilePhone!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 415px; CURSOR: move; LEFT: 70px" class="drag" sizcache="7" sizset="1">${deliveryContent!''}</SPAN>
+								</#if>
+								
+								<SPAN style="POSITION: absolute; TOP: 35px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${deliveryOrignAddress!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 110px; CURSOR: move; LEFT: 555px" class="drag" sizcache="7" sizset="1">${monthlyPayment!''}</SPAN>
+								<SPAN style="POSITION: absolute; TOP: 265px; CURSOR: move; LEFT: 640px" class="drag" sizcache="7" sizset="1">${deliverySenderSign!''}</SPAN>
+							</div>
+							</#if>
+		        		</td>
 					</tr>
 					<tr>
 						<td><input type="button" value="打印" onclick="printPage('Box')" class="btn-save"/><input type="button" class="btn-back"

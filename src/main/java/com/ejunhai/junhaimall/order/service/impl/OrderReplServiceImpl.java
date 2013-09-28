@@ -47,7 +47,7 @@ public class OrderReplServiceImpl extends BaseSpringService implements IOrderRep
 
 	@Override
 	public List<OrderRepl> queryOrderReplList(OrderRepl orderRepl, int pageNo, int pageSize) {
-		RowBounds rowBounds = new RowBounds((pageNo - 1) * pageSize, pageSize - 1);
+		RowBounds rowBounds = new RowBounds((pageNo - 1) * pageSize, pageSize);
 		return orderReplMapper.queryOrderReplList(orderRepl, rowBounds);
 	}
 

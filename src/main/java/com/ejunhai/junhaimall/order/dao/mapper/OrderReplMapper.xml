@@ -16,6 +16,7 @@
         <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
         <result column="province_city_area" property="provinceCityArea" jdbcType="VARCHAR" />
         <result column="detail_address" property="detailAddress" jdbcType="VARCHAR" />
+        <result column="logistics_company_code" property="logisticsCompanyCode" jdbcType="VARCHAR" />
         <result column="logistics_company" property="logisticsCompany" jdbcType="VARCHAR" />
         <result column="express_order_no" property="expressOrderNo" jdbcType="VARCHAR" />
         <result column="is_send_sms" property="isSendSms" jdbcType="SMALLINT" />
@@ -76,6 +77,7 @@
 	      <if test="areaCode != null and areaCode !=''" >area_code = #{areaCode,jdbcType=VARCHAR},</if>
 	      <if test="provinceCityArea != null and provinceCityArea !=''" >province_city_area = #{provinceCityArea,jdbcType=VARCHAR},</if>
 	      <if test="detailAddress != null and detailAddress !=''" >detail_address = #{detailAddress,jdbcType=VARCHAR},</if>
+	      <if test="logisticsCompanyCode != null and logisticsCompanyCode !=''" >logistics_company_code = #{logisticsCompanyCode,jdbcType=VARCHAR},</if>
 	      <if test="logisticsCompany != null and logisticsCompany !=''" >logistics_company = #{logisticsCompany,jdbcType=VARCHAR},</if>
 	      <if test="expressOrderNo != null and expressOrderNo !=''" >express_order_no = #{expressOrderNo,jdbcType=VARCHAR},</if>
 	      <if test="isSendSms != null" >is_send_sms = #{isSendSms,jdbcType=SMALLINT},</if>

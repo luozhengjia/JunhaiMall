@@ -51,7 +51,7 @@ public class OrderMainServiceImpl extends BaseSpringService implements IOrderMai
 
 	@Override
 	public List<OrderMain> queryOrderMainList(OrderMain orderMain, int pageNo, int pageSize) {
-		RowBounds rowBounds = new RowBounds((pageNo - 1) * pageSize, pageSize - 1);
+		RowBounds rowBounds = new RowBounds((pageNo - 1) * pageSize, pageSize);
 		return orderMainMapper.queryOrderMainList(orderMain, rowBounds);
 	}
 

@@ -47,7 +47,7 @@
 						<p>
 							<b>物流公司：</b><font color="blue">${orderMain.logisticsCompany!""}</font>&nbsp;&nbsp; 
 							<b>快递单号：</b><font color="blue">${orderMain.expressOrderNo!""}</font> &nbsp;&nbsp;
-							<input type="button" id="btn_${orderMain.expressOrderNo!""}" class="btn-add-normal-4ft" value="获取物流信息" onclick="showOrderLogisticsTrack('${orderMain.expressOrderNo}');"/>
+							<input type="button" id="btn_${orderMain.expressOrderNo!""}" class="btn-add-normal-4ft" value="获取物流信息" onclick="showOrderLogisticsTrack('${orderMain.logisticsCompanyCode?default('shunfeng')}','${orderMain.expressOrderNo}');"/>
 						</p>
 						<div id="logicInfo_${orderMain.expressOrderNo!""}"></div>
 					</#if>
@@ -66,7 +66,7 @@
 						<p>
 							<b>物流公司：</b><font color="blue">${orderRepl.logisticsCompany!""}</font>&nbsp;&nbsp; 
 							<b>快递单号：</b><font color="blue">${orderRepl.expressOrderNo!""}</font> &nbsp;&nbsp;
-							<input type="button" id="btn_${orderRepl.expressOrderNo!""}" class="btn-add-normal-4ft" value="获取物流信息" onclick="showOrderLogisticsTrack('${orderRepl.expressOrderNo}');"/>
+							<input type="button" id="btn_${orderRepl.expressOrderNo!""}" class="btn-add-normal-4ft" value="获取物流信息" onclick="showOrderLogisticsTrack('${orderMain.logisticsCompanyCode?default('shunfeng')}','${orderRepl.expressOrderNo}');"/>
 						</p>
 						<div id="logicInfo_${orderRepl.expressOrderNo!""}"></div>
 					</#if>
@@ -82,11 +82,11 @@
 </div>
 <script type="text/javascript">
 
-	function showOrderLogisticsTrack(expressOrderNo){
+	function showOrderLogisticsTrack(logisticsCompanyCode,expressOrderNo){
 		$("#btn_"+expressOrderNo).attr("disabled","false");
-		$.getJSON("http://api.ickd.cn/?com=shunfeng&type=json&encode=utf8&ord=desc&id=F88275FED9B2AFD04ECF53BD4EEFB3F9&nu="+expressOrderNo+"&callback=?",function(json){
+		$.getJSON("http://api.ickd.cn/?com="+logisticsCompanyCode+"&type=json&encode=utf8&ord=desc&id=F88275FED9B2AFD04ECF53BD4EEFB3F9&nu="+expressOrderNo+"&callback=?",function(json){
 			var html = [];  
-            if(json.status && json.data){
+            if(json.status==1 && json.data){
             	for(var i=0;i<json.data.length;i++) {
 					html.push('<p>'+ json.data[i].time +'&nbsp;'+ json.data[i].context +'</p>');
 				}

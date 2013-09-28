@@ -150,12 +150,7 @@
 					<span style="color:#f84705; font-weight:bold;">请输入正确的手机号码！</span>
 				</p>
 			</div>
-			<div class="consignee_name">
-				<p  style="margin-right:37px;">物流公司<span style="color:#F00">*</span> </p>
-				<p>
-					<input type="text" name="logisticsCompany" id="logisticsCompany" style="width:125px; height:30px;line-height:30px;" value="顺丰快递" disabled></input>
-				</p>
-			</div></form>
+			</form>
 	</div>
 	
 	

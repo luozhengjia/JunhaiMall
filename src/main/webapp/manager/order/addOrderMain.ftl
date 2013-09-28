@@ -90,13 +90,6 @@
 	            		<span id="detailAddressTip"></span>
 	            	</td>
 				</tr>
-				<tr>
-	            	<th>物流公司：</th>
-					<td>
-						<input type="text" name="logisticsCompany" size="20" id="logisticsCompany" value="顺丰快递" readonly="true"/>
-	            		<span id="logisticsCompanyTip"></span>
-	            	</td>
-				</tr>
 				
 				<tr>
 					<th></th>

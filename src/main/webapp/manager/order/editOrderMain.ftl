@@ -143,7 +143,7 @@
                 				${item.createTime?string('yyyy-MM-dd HH:mm')}  ${item.behavioutDescribe!''}<br/>
 							</#list>
 						</#if>
-						<input type="button" id="btn_${orderMain.expressOrderNo!""}" value="获取物流信息" onclick="showOrderLogisticsTrack('${orderMain.expressOrderNo}');"/>
+						<input type="button" id="btn_${orderMain.expressOrderNo!""}" value="获取物流信息" onclick="showOrderLogisticsTrack('${orderMain.logisticsCompanyCode?default('shunfeng')}','${orderMain.expressOrderNo}');"/>
 						<div id="logicInfo_${orderMain.expressOrderNo!""}"></div>
 					</td>
 				</tr>
@@ -192,11 +192,11 @@
 		$("#orderMainForm").submit();
 	}
 	
-	function showOrderLogisticsTrack(expressOrderNo){
+	function showOrderLogisticsTrack(logisticsCompanyCode,expressOrderNo){
 		$("#btn_"+expressOrderNo).attr("disabled","false");
-		$.getJSON("http://api.ickd.cn/?com=shunfeng&type=json&encode=utf8&ord=desc&id=F88275FED9B2AFD04ECF53BD4EEFB3F9&nu="+expressOrderNo+"&callback=?",function(json){
+		$.getJSON("http://api.ickd.cn/?com="+logisticsCompanyCode+"&type=json&encode=utf8&ord=desc&id=F88275FED9B2AFD04ECF53BD4EEFB3F9&nu="+expressOrderNo+"&callback=?",function(json){
 			var html = [];  
-            if(json.status && json.data){
+            if(json.status==1 && json.data){
             	for(var i=0;i<json.data.length;i++) {
 					html.push('<p>'+ json.data[i].time +'&nbsp;'+ json.data[i].context +'</p>');
 				}

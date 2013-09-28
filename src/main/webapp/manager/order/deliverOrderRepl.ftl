@@ -122,9 +122,13 @@
 				<tr>
 					<th>物流公司：</th>
 					<td>
-						<input type="text" name="logisticsCompany" size="15" id="logisticsCompany" value="${orderRepl.logisticsCompany?default("顺丰快递")}"
-							class=validate[required] data-rel="请输入物流公司" />
-						<span id="logisticsCompanyTip"></span>
+						<select id="logisticsCompanyCode" name="logisticsCompanyCode" class=validate[required] data-rel="请选择物流公司">
+	           				<option value="">请选择</option>
+	            			<#list logisticCompanyList as item >
+	            				<option value="${item.logisticsCompanyCode}"  <#if orderMain.logisticsCompanyCode?? && orderMain.logisticsCompanyCode = item.logisticsCompanyCode >selected</#if> >${item.logisticsCompany}</option>
+	            			</#list>
+	        			</select>
+						<span id="logisticsCompanyCodeTip"></span>
 	            	</td>
 	            	<th>运单号：</th>
 					<td>
