@@ -28,6 +28,7 @@
   		SELECT *from tbl_order_main where 1=1
   		<if test="orderMainNo != null and orderMainNo !=''">and order_main_no like CONCAT('%',#{orderMainNo},'%') </if>
   		<if test="couponNumber != null and couponNumber !=''">and coupon_number like CONCAT('%',#{couponNumber},'%') </if>
+  		<if test="provinceCityArea != null and provinceCityArea !=''">and province_city_area like CONCAT('%',#{provinceCityArea},'%') </if>
   		<if test="consignee != null and consignee !=''">and consignee=#{consignee} </if>
   		<if test="orderDate != null and orderDate !=''">and order_date=#{orderDate} </if>
   		<if test="state != null">and state=#{state} </if>
@@ -41,6 +42,7 @@
   		SELECT count(1) FROM tbl_order_main where 1=1
   		<if test="orderMainNo != null and orderMainNo !=''">and order_main_no like CONCAT('%',#{orderMainNo},'%') </if>
   		<if test="couponNumber != null and couponNumber !=''">and coupon_number like CONCAT('%',#{couponNumber},'%') </if>
+  		<if test="provinceCityArea != null and provinceCityArea !=''">and province_city_area like CONCAT('%',#{provinceCityArea},'%') </if>
   		<if test="consignee != null and consignee !=''">and consignee=#{consignee} </if>
   		<if test="orderDate != null  and orderDate !=''">and order_date=#{orderDate} </if>
   		<if test="state != null">and state=#{state} </if>

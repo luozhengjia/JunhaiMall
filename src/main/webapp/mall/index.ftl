@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div style="color:red;width:990px; margin:auto;padding-left:200px;">
-		骏海水产温馨提示：由于今年天气原因，大闸蟹成熟较晚，建议“吃货客户”在10月国庆后提货。急需客户，建议9月22日开始预约。
+		骏海水产温馨提示：蟹已基本成熟，请您尽快预约，预约选择的时间为发货时间，而非到货时间，请知晓！一般发货起48小时内可达。
 	</div>
 	<div class="title">
 		<div class="ticket_l">

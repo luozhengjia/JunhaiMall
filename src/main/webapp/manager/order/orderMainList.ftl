@@ -36,23 +36,25 @@
 	           			<input size="18"  type="text" id="orderMainNo" name="orderMainNo" value="${orderMain.orderMainNo?default('')}" class="inputtxt"/>
 	           			<label for="name">收货人：</label>
 	           			<input size="18"  type="text" id="consignee" name="consignee" value="${orderMain.consignee?default('')}" class="inputtxt"/>
-	           			<label for="name">下单时间：</label>
-	           			<input size="15"  type="text" id="startOrderTime" name="startOrderTime" class="inputtxt"
-	           				value="<#if orderMain.startOrderTime??>${orderMain.startOrderTime?string('yyyy-MM-dd HH:mm')}</#if>" /> 至
-	           			<input size="15"  type="text" id="endOrderTime" name="endOrderTime" class="inputtxt"
-	           				value="<#if orderMain.endOrderTime??>${orderMain.endOrderTime?string('yyyy-MM-dd HH:mm')}</#if>" />
+	           			<label for="name">预约日期：</label>
+	           			<input size="18"  type="text" id="orderDate" name="orderDate" value="${orderMain.orderDate!''}" class="inputtxt"/>
+	           			<label for="name">省市区：</label>
+	           			<input size="18"  type="text" id="provinceCityArea" name="provinceCityArea" value="${orderMain.provinceCityArea?default('')}" class="inputtxt"/>
         			</div>
         			<div style="height:32px;line-height:32px;">
         				<label for="name">优惠券码：</label>
 	           			<input size="18"  type="text" id="couponNumber" name="couponNumber" value="${orderMain.couponNumber!''}" class="inputtxt"/>
-        				<label for="name">预约日期：</label>
-	           			<input size="18"  type="text" id="orderDate" name="orderDate" value="${orderMain.orderDate!''}" class="inputtxt"/>
-	           			<label>打印状态：</label>
+        				<label>打印状态：</label>
 				        <select name="isPrintExpress" style="width:120px;">
 				        	<option value="">请选择</option>
 				        	<option value="0" <#if orderMain.isPrintExpress??&&(orderMain.isPrintExpress==0)>selected</#if> >未打印</option>
 				        	<option value="1" <#if orderMain.isPrintExpress??&&(orderMain.isPrintExpress==1)>selected</#if> >已打印</option>
 				        </select>
+        				<label for="name">下单时间：</label>
+	           			<input size="15"  type="text" id="startOrderTime" name="startOrderTime" class="inputtxt"
+	           				value="<#if orderMain.startOrderTime??>${orderMain.startOrderTime?string('yyyy-MM-dd HH:mm')}</#if>" /> 至
+	           			<input size="15"  type="text" id="endOrderTime" name="endOrderTime" class="inputtxt"
+	           				value="<#if orderMain.endOrderTime??>${orderMain.endOrderTime?string('yyyy-MM-dd HH:mm')}</#if>" />
 	           			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	           			<input type="submit" class="btn-add-normal" value="搜索" />
         			</div>
@@ -70,7 +72,11 @@
                     <th style="text-align:center">预约日期</th>
                     <th style="text-align:center">收货人</th>
                     <th style="text-align:center">电话</th>
-                    <th style="text-align:center">物流公司</th>
+                    <#if orderMain.state==0>
+    				<th style="text-align:center">收货省市区</th>
+    				<#else>
+    				<th style="text-align:center">物流公司</th>
+    				</#if>
                     <th style="text-align:center">发货状态</th>
                     <th style="text-align:center">打印状态</th>
                     <th style="text-align:center">操作</th>
@@ -88,7 +94,11 @@
                 			<td style="text-align:center">${item.orderDate!''}</td>
                 			<td style="text-align:center">${item.consignee!''}</td>
                 			<td style="text-align:center">${item.mobilePhone!''}</td>
-                			<td style="text-align:center">${item.logisticsCompany!''}</td>
+                			<#if orderMain.state==0>
+		    				<td style="text-align:center" title="${item.provinceCityArea}"><#if item.provinceCityArea?length lt 13>${item.provinceCityArea}<#else>${item.provinceCityArea[0..12]}</#if></td>
+		    				<#else>
+		    				<td style="text-align:center">${item.logisticsCompany!''}</td>
+		    				</#if>
                 			<td style="text-align:center"><#if item.state==0>未发货<#else>已发货</#if></td>
                 			<td style="text-align:center"><#if item.isPrintExpress==0>未打印<#else>已打印</#if></td>
                 			<td style="text-align:center">
@@ -109,13 +119,23 @@
                 </#if>
                 </tbody>
 			</table>
-			<div style="padding-top:10px;"><input class="btn-add-normal-4ft" value="批量打印" onclick="batchPrintExpress();"/></div>
+			
+			<div class="add_detail_box" style="padding-top:6px;">
+    			<div style="height:36px;line-height:36px;">
+           			<label for="name">快递模板：</label>
+           			<select class="input-select" id="logisticsCompanySelector" style="width:120px;">
+	                    <option selected="selected" value="0">请选择</option>
+	                    <option value="shunfeng">顺丰快递模板</option>
+	                    <option value="zhongtong">中通快递模板</option>
+	                </select>
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           			<input class="btn-add-normal-4ft" value="批量打印" onclick="batchPrintExpress();"/>
+    			</div>
+           	</div>
+           	
 		</div>
 		<div class="bottom clearfix">
-			<#if pageFinder ??>
-				<#import "../common.ftl" as page>
-				<@page.queryForm formId="queryForm"/>
-			</#if>
+			<#if pageFinder ??><#import "../common.ftl" as page><@page.queryForm formId="queryForm"/></#if>
 		</div>
 	</div>
 </div>
@@ -142,12 +162,19 @@
     		return;
     	}
     	
+    	var logisticsCompany=$("#logisticsCompanySelector").val();
+    	if(logisticsCompany==0){
+    		alert("请选择快递模板");
+    		return;
+    	}
+    	
     	var orderMainIds=',';
     	checkOrderArr.each(function (i){
     		orderMainIds=orderMainIds+','+this.id;
 	    });
     	orderMainIds=orderMainIds.substring(1,orderMainIds.length);
-    	gotolink('${BasePath}/system/order/toBatchPrintMainExpress.sc?state=<#if orderMain??>${orderMain.state?c}</#if>&orderMainIds='+orderMainIds);
+    	var paramUrl='&orderMainIds='+orderMainIds+'&logisticsCompany='+logisticsCompany;
+    	gotolink('${BasePath}/system/order/toBatchPrintMainExpress.sc?state=<#if orderMain??>${orderMain.state?c}</#if>'+paramUrl);
     }
 
 </script>

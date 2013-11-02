@@ -137,12 +137,12 @@ public class OrderMainController extends BaseController {
         if (StringUtils.isBlank(orderMain.getExpressOrderNo()) || StringUtils.isBlank(orderMain.getMobilePhone())) {
             throw new Exception("发货信息有错");
         }
-        
+
         // 根据物流公司编码获取物流公司名称
         if (StringUtils.isNotBlank(orderMain.getLogisticsCompanyCode())) {
             orderMain.setLogisticsCompany(OrderUtil.getLogisticCompany(orderMain.getLogisticsCompanyCode()));
         }
-        
+
         orderMainService.deliverOrderMain(orderMain);
         return new ModelAndView(new RedirectView("/system/order/orderMainList.sc?state=0"));
     }
@@ -186,7 +186,8 @@ public class OrderMainController extends BaseController {
     }
 
     @RequestMapping("/toBatchPrintMainExpress")
-    public String toBatchPrintMainExpress(String orderMainIds, int state, ModelMap modelMap) throws Exception {
+    public String toBatchPrintMainExpress(String orderMainIds, int state, String logisticsCompany, ModelMap modelMap)
+            throws Exception {
         if (StringUtils.isBlank(orderMainIds)) {
             logger.error("需打印的订单号不能为空");
         }
@@ -202,6 +203,7 @@ public class OrderMainController extends BaseController {
         }
         modelMap.put("state", state);
         modelMap.put("orderMainIds", orderMainIds);
+        modelMap.put("logisticsCompany", logisticsCompany);
         modelMap.put("orderList", orderMainList);
 
         Config config = configService.getConfigByKey(OrderConstant.EXPRESS_DELIVERY_COMPANY);
