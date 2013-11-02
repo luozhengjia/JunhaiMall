@@ -35,6 +35,7 @@
 <script type="text/javascript">
 
 	function showCouponState(){
+		$("#couponNumber_state_div").html('');
 		var couponNumber=$('#couponNumber').val();
 		if(JunHai.Util.isEmpty(couponNumber)){
 			alert("请输入优惠券号码");
