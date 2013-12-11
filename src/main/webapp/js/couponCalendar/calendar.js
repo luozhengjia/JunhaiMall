@@ -19,7 +19,13 @@ var calendar = function (date,startDate,endDate,deferDate) {
         var year = tempdate.getFullYear();
         var month = tempdate.getMonth() + 1;
         var firstdayWeek = new Date(Date.parse(year + "/" + month + "/" + "1")).getDay();
-        var endday = new Date(Date.parse(year + "/" + (month + 1) + "/" + "1") - (24 * 60 * 60 * 1000)).getDate();
+        var endday;
+        var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;
+        if (isChrome) {
+        	endday = new Date(Date.parse(year + "/" + month + "/" + "1") - (24 * 60 * 60 * 1000)).getDate();
+        }else{
+        	endday = new Date(Date.parse(year + "/" + (month + 1) + "/" + "1") - (24 * 60 * 60 * 1000)).getDate();
+        }
         var monthsday = endday; //月天数
         var html = "";
         //计算前后
@@ -28,7 +34,13 @@ var calendar = function (date,startDate,endDate,deferDate) {
         var calenarr = [];
         //前补丁
         var upmonthfirstday = new Date(Date.parse(year + "/" + month + "/" + "1") - frontsday * (24 * 60 * 60 * 1000));
-        var nextmonthfirstday = new Date(Date.parse(year + "/" + (month + 1) + "/" + "1"));
+        var nextmonthfirstday;
+        if (isChrome) {
+        	nextmonthfirstday = new Date(Date.parse(year + "/" + month + "/" + "1"));
+        }else{
+        	nextmonthfirstday = new Date(Date.parse(year + "/" + (month + 1) + "/" + "1"));
+        }
+        
         for (var i = 0; i < frontsday; i++) {
             calenarr.push(upmonthfirstday.getFullYear() + "-" + (upmonthfirstday.getMonth() + 1) + "-" + (upmonthfirstday.getDate() + i));
         }
@@ -49,7 +61,7 @@ var calendar = function (date,startDate,endDate,deferDate) {
 		}
 		this.firstid = calenarr[0];
 		this.lastid = calenarr[41];
-		//alert(this.firstid +"=="+this.lastid);
+//		alert(this.firstid +"=="+this.lastid);
 		
 		var isUse = function(date){
 			var strs = [];
